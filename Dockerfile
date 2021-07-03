@@ -8,8 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # libgl1-mesa-dri
 # libllvm10?? not needed because we shouldn't compile shaders?
 RUN dpkg --add-architecture i386
-RUN apt-get install libfreetype6:i386 -y
-RUN apt-get update && apt-get install --no-install-recommends -y wine-stable python3 libfreetype6 tmux nano \
+RUN apt-get update && apt-get install --no-install-recommends -y  libfreetype6:i386 wine-stable python3 libfreetype6 tmux nano \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
