@@ -1,5 +1,8 @@
 FROM steamcmd/steamcmd:latest
 
+ENV TZ="America/New_York"
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt update
 # todo: remove sound/graphics from install?
 # libglapi-mesa
