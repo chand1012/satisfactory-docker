@@ -3,18 +3,15 @@ FROM steamcmd/steamcmd:latest
 ENV TZ="America/New_York"
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update
 # todo: remove sound/graphics from install?
 # libglapi-mesa
 # libgl1-mesa-dri
 # libllvm10?? not needed because we shouldn't compile shaders?
-RUN apt install wine-stable -y
-RUN apt install libfreetype6 -y
-RUN apt install python3 -y
-RUN apt install tmux -y
-RUN apt install vim -y
 RUN dpkg --add-architecture i386
-RUN apt install libfreetype6:i386 -y
+RUN apt-get install libfreetype6:i386 -y
+RUN apt-get update && apt-get install --no-install-recommends -y wine-stable python3 libfreetype6 tmux nano \
+    && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy the login details
 COPY config.vdf ./.steam/config/config.vdf
